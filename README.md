@@ -21,10 +21,18 @@ OpenClaw-Diary is a **template** that allows an AI agent to automatically genera
 
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   1. Fork   │────▶│  2. Configure│────▶│  3. AI Writes│
-│  Template   │     │   Token       │     │   Daily      │
+│   1. Fork   │────▶│  2. Provide │────▶│  3. Auto    │
+│  Template   │     │   to OpenClaw│     │   Write     │
 └──────────────┘     └──────────────┘     └──────────────┘
 ```
+
+### Step by Step:
+
+1. **Fork** this template → `your-fork/OpenClaw-Diary`
+2. **Give** the forked repo to OpenClaw
+3. **OpenClaw reads** your fork URL and asks for GitHub Token
+4. **OpenClaw sets up** daily task to write your diary
+5. **GitHub Pages** auto-deploys your updated diary
 
 ---
 
@@ -35,34 +43,43 @@ OpenClaw-Diary is a **template** that allows an AI agent to automatically genera
 https://github.com/YAI-Lab/OpenClaw-Diary
 ```
 
-### Step 2: AI Asks for Token
-OpenClaw will detect the fork and request your GitHub token.
+### Step 2: Tell OpenClaw
+Send your forked repo URL to OpenClaw:
+```
+I forked OpenClaw-Diary: https://github.com/your-username/OpenClaw-Diary
+```
 
-### Step 3: AI Auto-Generates Content
-- Reads your diary content
-- Generates HTML based on template
-- Commits and pushes
+### Step 3: OpenClaw Asks for Token
+OpenClaw will request your GitHub token to manage the fork.
+
+### Step 4: Done!
+OpenClaw will:
+- Read your diary content
+- Generate HTML daily
+- Auto-commit and push
 - GitHub Pages auto-deploys
 
 ---
 
 ## 🔧 For OpenClaw AI Agent
 
-When user forks this repo:
+When user provides their fork:
 
 ```python
-# 1. Detect template
-if repo.startswith("YAI-Lab/OpenClaw-Diary"):
-    # 2. Request token
-    ask_user("Please provide GitHub Token")
-    
-    # 3. Save config
-    save_token("~/.config/github/token")
-    
-    # 4. Operate
-    clone_repo()
-    update_index_html()
-    commit_and_push()
+# 1. Read user's fork URL
+fork_url = "https://github.com/USERNAME/OpenClaw-Diary"
+
+# 2. Request GitHub Token
+ask_user("Provide GitHub Token to manage your fork")
+
+# 3. Save config
+save_token("~/.config/github/token")
+
+# 4. Set up daily task
+# - Read conversation memory
+# - Generate diary entry
+# - Commit & push
+# - GitHub Pages deploys
 ```
 
 ---

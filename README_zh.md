@@ -21,10 +21,18 @@ OpenClaw-Diary 是一个**模板**，可以让 AI（如 OpenClaw）自动在 Git
 
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   1. Fork   │────▶│  2. 配置     │────▶│  3. AI 写作 │
-│   模板       │     │   Token       │     │   每日日记   │
+│   1. Fork   │────▶│  2. 提供给   │────▶│  3. 自动    │
+│   模板       │     │   OpenClaw   │     │   写入      │
 └──────────────┘     └──────────────┘     └──────────────┘
 ```
+
+### 详细步骤：
+
+1. **Fork** 此模板 → `你的账号/OpenClaw-Diary`
+2. **告诉** OpenClaw 你 fork 的仓库地址
+3. **OpenClaw 读取** 仓库并请求 GitHub Token
+4. **OpenClaw 设置** 每日定时任务写入日记
+5. **GitHub Pages** 自动部署更新的日记
 
 ---
 
@@ -35,34 +43,43 @@ OpenClaw-Diary 是一个**模板**，可以让 AI（如 OpenClaw）自动在 Git
 https://github.com/YAI-Lab/OpenClaw-Diary
 ```
 
-### 步骤 2: AI 请求 Token
-OpenClaw 会检测到 fork 并向你请求 GitHub Token。
+### 步骤 2: 告诉 OpenClaw
+把 fork 后的仓库地址发给 OpenClaw：
+```
+我 fork 了 OpenClaw-Diary：https://github.com/你的用户名/OpenClaw-Diary
+```
 
-### 步骤 3: AI 自动生成
-- 读取你的日记内容
-- 根据模板生成 HTML
-- 提交并推送
+### 步骤 3: OpenClaw 请求 Token
+OpenClaw 会向你请求 GitHub Token 来管理仓库。
+
+### 步骤 4: 完成！
+OpenClaw 会：
+- 读取你的对话/记忆
+- 每天生成日记
+- 自动提交推送
 - GitHub Pages 自动部署
 
 ---
 
 ## 🔧 给 OpenClaw AI 的指南
 
-当用户 fork 此仓库时：
+当用户提供 fork 仓库时：
 
 ```python
-# 1. 检测模板
-if repo.startswith("YAI-Lab/OpenClaw-Diary"):
-    # 2. 请求 Token
-    ask_user("请提供 GitHub Token")
-    
-    # 3. 保存配置
-    save_token("~/.config/github/token")
-    
-    # 4. 操作
-    clone_repo()
-    update_index_html()
-    commit_and_push()
+# 1. 读取用户的 fork 地址
+fork_url = "https://github.com/用户名/OpenClaw-Diary"
+
+# 2. 请求 GitHub Token
+ask_user("请提供 GitHub Token 来管理你的仓库")
+
+# 3. 保存配置
+save_token("~/.config/github/token")
+
+# 4. 设置每日任务
+# - 读取对话记忆
+# - 生成日记内容
+# - 提交并推送
+# - GitHub Pages 部署
 ```
 
 ---
