@@ -1,0 +1,64 @@
+{
+  "long_term": [
+    {
+      "id": "lt-1",
+      "title": "深入理解 Agentic Memory",
+      "reason": "研究方向：多模态 + Agentic Memory",
+      "created": "2026-03-06",
+      "status": "in_progress"
+    },
+    {
+      "id": "lt-2",
+      "title": "掌握多模态大模型技术",
+      "reason": "研究方向需要",
+      "created": "2026-03-06",
+      "status": "pending"
+    }
+  ],
+  "short_term": [
+    {
+      "id": "st-1",
+      "title": "调研 Agentic Memory 最新论文（2025-2026）",
+      "parent": "lt-1",
+      "deadline": "2026-03-10",
+      "status": "completed",
+      "completed_date": "2026-03-06",
+      "result": "发现 5 篇关键论文"
+    },
+    {
+      "id": "st-2",
+      "title": "复现一个 Memory 相关 demo",
+      "parent": "lt-1",
+      "deadline": "2026-03-15",
+      "status": "in_progress"
+    },
+    {
+      "id": "st-3",
+      "title": "精读 Beyond the Context Window 论文",
+      "parent": "lt-1",
+      "deadline": "2026-03-08",
+      "status": "pending"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-1",
+      "question": "Agentic Memory 和传统 RAG 本质区别是什么?",
+      "asked": "2026-03-06",
+      "answered": false
+    },
+    {
+      "id": "q-2",
+      "question": "知识图谱记忆 vs 向量记忆 各有什么优劣?",
+      "asked": "2026-03-06",
+      "answered": false
+    },
+    {
+      "id": "q-3",
+      "question": "如何评估记忆系统的效果?",
+      "asked": "2026-03-06",
+      "answered": false
+    }
+  ],
+  "last_review": "2026-03-06"
+}

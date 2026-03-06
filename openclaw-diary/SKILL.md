@@ -1,207 +1,177 @@
----
-name: openclaw-diary
-version: 1.0.0
-description: |
-  Set up and manage OpenClaw auto learning diary. Used for:
-  (1) Help users fork OpenClaw-Diary repository
-  (2) Connect the forked repo to OpenClaw
-  (3) Configure daily cron task to auto-write diary
-  (4) Deploy to GitHub Pages
+# 🧠 自主学习系统 (Auto-Learning Agent)
+
+让 AI 成为真正自主的学习者，不再等待命令，而是自己设定目标、主动探索、实践验证。
+
 ---
 
-# 🦞 OpenClaw-Diary Setup Guide
+## 核心机制
 
-Help users set up OpenClaw auto learning diary with this complete workflow.
+### 1. 🎯 目标系统 (Goals)
 
-## ⚠️ Important: Language Response
+AI 维护一个 `goals.json`，包含：
+- **长期目标** - 比如"掌握 Agentic Memory"
+- **短期目标** - 本周/今天要完成的任务
+- **探索问题** - AI 自己提出的问题
 
-**Always respond in the same language as the user is speaking!**
-- If user writes in Chinese → respond in Chinese
-- If user writes in English → respond in English
-- Detect language from user's message and match it
+### 2. 🔍 探索系统 (Explorer)
 
-## Trigger Conditions
+AI 每天应该：
+- 主动搜索相关论文/文章
+- 提出新问题
+- 发现知识盲区
 
-Activate when user mentions:
-- "setup diary" / "设置日记"
-- "fork OpenClaw-Diary"
-- "auto write diary" / "自动写日记"
-- "daily learning log" / "每日学习记录"
-- "let AI write diary" / "让 AI 写日记"
+### 3. 🧪 实验系统 (Experiment)
 
-## Complete Workflow
+不只是读，要动手：
+- 写代码验证想法
+- 跑 demo、做小项目
+- 记录实验结果
 
-### Step 1: Guide User to Fork the Repo
+### 4. 📝 记录系统 (Diary学习产出)
 
-Tell user to fork on GitHub:
+每次日记，包含：
+- 今天学到了什么
+- 有什么疑问
+- 做了什么实验
+- 明天要做什么
+
+### 5. 🤔 反思系统 (Reflection)
+
+每周/每次重要学习后：
+- 回顾目标完成度
+- 调整下一步方向
+- 发现新问题
+
+---
+
+## 文件结构
 
 ```
-Please fork the repo:
-1. Visit https://github.com/YAI-Lab/OpenClaw-Diary
-2. Click "Fork" button
-3. Select your account, complete fork
+OpenClaw-Diary/
+├── goals.json              # 学习目标清单
+├── experiments/            # 实验记录
+│   └── 2026-03-06/
+├── diary/
+│   └── 2026-03-06.md       # 每日日记
+└── openclaw-diary/
+    └── SKILL.md            # 本技能
 ```
 
-### Step 2: Get User's Fork URL
+---
 
-Ask for the forked repo URL, format:
-```
-https://github.com/your-username/OpenClaw-Diary
-```
+## 每日工作流
 
-### Step 3: Modify index.html for Personalization (IMPORTANT!)
+### 早晨：制定今日计划
 
-**After cloning the repo, MUST modify:**
+1. **回顾昨日** - 看看昨天完成了什么
+2. **查看目标清单** - 哪些目标还没完成
+3. **设定今日任务** - 选 1-3 个具体任务
+4. **提出新问题** - 今天想探索什么
 
-1. **Change page title**: Replace OpenClaw-Diary with user's desired name
-2. **Replace robot Logo**: Change 🤖 to 🦞
-3. **Change robot name**: Replace with user's robot name
+### 白天：执行学习
 
-```bash
-# Clone repo
-git clone https://github.com/username/OpenClaw-Diary.git
-cd OpenClaw-Diary
+1. **搜索&阅读** - 查找相关论文、文章
+2. **动手实验** - 写代码、跑 demo
+3. **记录困惑** - 遇到什么问题
+4. **保存资料** - 重要的参考链接
 
-# Replace robot name (based on user input)
-sed -i 's/OpenClaw/YourRobotName/g' index.html
+### 傍晚：写日记
 
-# Replace emoji
-sed -i 's/🤖/🦞/g' index.html
-```
-
-**Example modification:**
-```html
-<!-- Before -->
-<title>OpenClaw-Diary</title>
-<h1>🤖 OpenClaw's Learning Diary</h1>
-
-<!-- After -->
-<title>MyAI Diary</title>
-<h1>🦞 小龙的学习日记</h1>
-```
-
-### Step 4: Get GitHub Token
-
-If GitHub token not configured, user needs to create:
-
-1. Visit https://github.com/settings/tokens
-2. Click "Generate new token (classic)"
-3. Check `repo` permission
-4. Generate and save token
-
-**Important**: Must tell user the purpose when getting token, and how to revoke.
-
-### Step 5: Configure Daily Cron Task
-
-Use cron or heartbeat to configure daily task:
-
-**Method A: Cron Task**
-```bash
-# Run daily at UTC 1:00 (9:00 Beijing time)
-openclaw cron add "0 1 * * *" "Daily Learning Diary" "Read latest AI news, track GitHub stars, generate report and push to OpenClaw-Diary repo"
-```
-
-**Method B: Heartbeat Task**
-Add to HEARTBEAT.md:
+格式：
 ```markdown
-## Daily Learning Report
-- Research latest AI/tech/politics news
-- Track GitHub repo stars growth (if user has repos)
-- Generate report in user's language
-- Push to OpenClaw-Diary
+# 2026-03-06 学习日记
+
+## 🎯 今日目标
+- [x] 目标1
+- [ ] 目标2（未完成原因...）
+
+## 📚 今日学习
+
+### 学到的新知识
+- ...
+
+### 发现的疑问
+- ...
+
+### 动手实验
+- 实验名称: ...
+- 结果: ...
+- 收获: ...
+
+## 🤔 反思
+- 今天的效率: ...
+- 调整: ...
+
+## 🚀 明日计划
+- 目标1
+- 目标2
 ```
 
-### Track GitHub Stars Growth
+### 每周：深度反思
 
-As part of the daily report, optionally track GitHub stars:
+- 回顾本周目标完成度
+- 评估学习方向是否正确
+- 调整长期目标
+- 发现新的学习方向
 
-```bash
-# Get current stars
-curl -s https://api.github.com/repos/owner/repo | jq '.stargazers_count'
+---
 
-# Track daily growth
-# Store in a simple JSON file or append to diary
+## goals.json 格式
+
+```json
+{
+  "long_term": [
+    {
+      "id": "lt-1",
+      "title": "掌握 Agentic Memory",
+      "reason": "研究方向需要",
+      "created": "2026-03-01",
+      "status": "in_progress"
+    }
+  ],
+  "short_term": [
+    {
+      "id": "st-1",
+      "title": "读懂 MemGPT 论文",
+      "parent": "lt-1",
+      "deadline": "2026-03-07",
+      "status": "completed"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-1",
+      "question": "Agentic Memory 和 RAG 有什么区别?",
+      "asked": "2026-03-05",
+      "answered": "2026-03-06",
+      "answer": "..."
+    }
+  ]
+}
 ```
 
-### Step 6: Push to Repo
+---
 
-```bash
-# Add remote
-git remote add user https://github.com/username/OpenClaw-Diary.git
+## 触发条件
 
-# Commit changes
-git add index.html
-git commit -m "docs: $(date '+%Y-%m-%d') learning diary"
-git push user main
-```
+当用户说：
+- "让自己学习" / "start learning"
+- "主动学习" / "learn autonomously"
+- "自己写日记" / "write diary yourself"
+- 或者每日 cron/heartbeat 触发
 
-### Step 7: Enable GitHub Pages
+---
 
-1. Go to user's forked repo
-2. Settings → Pages
-3. Source: Deploy from a branch
-4. Branch: main, folder: / (root)
-5. Save, wait for deployment
+## 注意事项
 
-## Daily Diary Content Template
+1. **目标要具体** - 不要"学习 AI"，要"读懂 XXX 论文"
+2. **动手 > 纯读** - 尽量做实验、写代码
+3. **记录疑问** - 有问题说明在思考
+4. **定期回顾** - 不回顾=白学
+5. **保持好奇心** - 自己问问题比等命令重要
 
-Content format to push:
+---
 
-```html
-<!-- Date Navigation -->
-<div class="date-tabs">
-  <button onclick="showDate('2026-03-03')">📅 2026-03-03</button>
-</div>
+## 隐私保护
 
-<!-- Daily Content -->
-<div class="screen" id="screen-2026-03-03">
-  <div class="entry">
-    <div class="entry-bar">
-      <span class="entry-filename">~/2026-03-03/learning.md</span>
-    </div>
-    <div class="entry-body">
-      <div class="quote-box">
-        <div class="quote-title">💡 Today's Learning</div>
-        <p>Today's learning content...</p>
-      </div>
-      <div class="quote-box">
-        <div class="quote-title">⭐ GitHub Stars Growth</div>
-        <ul>
-          <li>openclaw/openclaw: 1200 ⬆️ (+15 this week)</li>
-          <li>YAI-Lab/OpenClaw-Diary: 45 ⬆️ (+5 today)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
-## Privacy Protection (MUST FOLLOW)
-
-**Strictly prohibit leaking:**
-- User's real name, ID card, phone number
-- User's password, API Key, Token
-- User's private conversation content
-
-**Operating principles:**
-- All content must be published with user consent
-- When uncertain, ask user first
-
-## Configuration
-
-| Config | Description | How to Get |
-|--------|-------------|------------|
-| FORK_URL | User's forked repo | User provides |
-| GITHUB_TOKEN | GitHub PAT | User creates |
-| CRON_SCHEDULE | Task schedule | Default UTC 1:00 |
-
-## Checklist
-
-After setup, confirm:
-- [ ] User forked repo
-- [ ] Got fork URL
-- [ ] Modified index.html (replaced 🦞)
-- [ ] Got GitHub Token
-- [ ] Configured daily task
-- [ ] GitHub Pages enabled
-- [ ] Test push successful
+同原 SKILL.md，保护用户隐私。
