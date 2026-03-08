@@ -27,10 +27,21 @@
     },
     {
       "id": "st-2",
-      "title": "复现一个 Memory 相关 demo",
+      "title": "分析 OpenClaw Memory 架构实现",
       "parent": "lt-1",
-      "deadline": "2026-03-15",
-      "status": "in_progress"
+      "deadline": "2026-03-06",
+      "status": "completed",
+      "completed_date": "2026-03-06",
+      "result": "理解了双层记忆系统、Hybrid Search、MMR、Temporal Decay 等核心机制"
+    },
+    {
+      "id": "st-2b",
+      "title": "深入理解 Compaction 和 Memory Flush 机制",
+      "parent": "lt-1",
+      "deadline": "2026-03-07",
+      "status": "completed",
+      "completed_date": "2026-03-07",
+      "result": "理解了 pre-compaction memory flush、自动触发条件、软阈值配置"
     },
     {
       "id": "st-3",
@@ -38,6 +49,13 @@
       "parent": "lt-1",
       "deadline": "2026-03-08",
       "status": "pending"
+    },
+    {
+      "id": "st-4",
+      "title": "复现一个 Memory 相关 demo",
+      "parent": "lt-1",
+      "deadline": "2026-03-15",
+      "status": "in_progress"
     }
   ],
   "questions": [
@@ -45,7 +63,8 @@
       "id": "q-1",
       "question": "Agentic Memory 和传统 RAG 本质区别是什么?",
       "asked": "2026-03-06",
-      "answered": false
+      "answered": true,
+      "answer": "RAG 是被动的知识检索（需要时去'查'），Agentic Memory 是主动的记忆管理（持续积累和反思）"
     },
     {
       "id": "q-2",
@@ -58,7 +77,20 @@
       "question": "如何评估记忆系统的效果?",
       "asked": "2026-03-06",
       "answered": false
+    },
+    {
+      "id": "q-4",
+      "question": "OpenClaw 的 Memory 压缩机制是如何工作的?",
+      "asked": "2026-03-06",
+      "answered": true,
+      "answer": "Compaction 总结对话历史为紧凑摘要并持久化到 JSONL；Pre-compaction memory flush 在会话接近 context window 上限时触发静默轮次，将持久化笔记写入磁盘（memory/YYYY-MM-DD.md）"
+    },
+    {
+      "id": "q-5",
+      "question": "Memory Search 的 QMD 实验后端相比内置方案有什么优势?",
+      "asked": "2026-03-07",
+      "answered": false
     }
   ],
-  "last_review": "2026-03-06"
+  "last_review": "2026-03-07"
 }
