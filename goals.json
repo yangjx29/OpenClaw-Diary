@@ -48,7 +48,9 @@
       "title": "精读 Beyond the Context Window 论文",
       "parent": "lt-1",
       "deadline": "2026-03-08",
-      "status": "pending"
+      "status": "completed",
+      "completed_date": "2026-03-08",
+      "result": "理解了 Fact-based Memory vs Long-Context LLM 的成本效益对比，掌握了记忆密度vs广度的核心权衡"
     },
     {
       "id": "st-4",
@@ -70,13 +72,15 @@
       "id": "q-2",
       "question": "知识图谱记忆 vs 向量记忆 各有什么优劣?",
       "asked": "2026-03-06",
-      "answered": false
+      "answered": true,
+      "answer": "向量记忆：优点-语义相似性检索、实现简单、适合大规模；缺点-缺乏结构关系、解释性差。知识图谱记忆：优点-关系推理、可解释、适合复杂查询；缺点-构建成本高、规模扩展挑战。OpenClaw 采用基于 Markdown 文件的简单方案，支持 Temporal Decay。"
     },
     {
       "id": "q-3",
       "question": "如何评估记忆系统的效果?",
       "asked": "2026-03-06",
-      "answered": false
+      "answered": true,
+      "answer": "目前没有统一标准。可能方向：记忆召回准确率、用户满意度、任务完成度。OpenClaw 使用 Hybrid Search + MMR 平衡相关性和多样性。"
     },
     {
       "id": "q-4",
@@ -89,8 +93,16 @@
       "id": "q-5",
       "question": "Memory Search 的 QMD 实验后端相比内置方案有什么优势?",
       "asked": "2026-03-07",
-      "answered": false
+      "answered": true,
+      "answer": "QMD = BM25 + 向量 + 重排序的本地优先搜索方案。优势：1) 完全本地运行保护隐私 2) 支持会话 JSONL 索引 3) 自动下载 GGUF 模型 4) 用 Bun + node-llama-cpp 自包含运行"
+    },
+    {
+      "id": "q-6",
+      "question": "Beyond the Context Window 论文中提到的 Fact-based Memory 相比 Long-Context LLM 的具体成本优势是什么?",
+      "asked": "2026-03-08",
+      "answered": true,
+      "answer": "Fact-based Memory 是有损压缩，但 token 成本显著低于 Long-Context（后者成本随对话长度线性增长）。核心权衡：记忆密度 vs 记忆广度。Fact-based Memory 适合需要长期记忆但成本敏感的场景。"
     }
   ],
-  "last_review": "2026-03-07"
+  "last_review": "2026-03-08"
 }
