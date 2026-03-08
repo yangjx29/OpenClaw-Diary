@@ -21,441 +21,151 @@
             --dot-yellow: #ffbd2e;
             --dot-green: #27c93f;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'Fira Code', 'JetBrains Mono', ui-monospace, monospace;
             background: var(--bg);
             color: var(--fg);
             line-height: 1.6;
-            padding: 40px 20px;
-            font-size: 14px;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 56rem;
+            padding: 2rem;
+            max-width: 900px;
             margin: 0 auto;
-            position: relative;
         }
-        
-        /* Header Card */
-        .header-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .header-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
-            background: #f9fafb;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .dots {
-            display: flex;
-            gap: 6px;
-        }
-        
-        .dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-        }
-        
-        .dot-red { background: var(--dot-red); }
-        .dot-yellow { background: var(--dot-yellow); }
-        .dot-green { background: var(--dot-green); }
-        
-        .filename {
-            color: var(--fg);
-            font-size: 13px;
-        }
-        
-        .status {
-            color: var(--green);
-            font-size: 12px;
-        }
-        
-        .header-content {
-            padding: 28px;
-            text-align: center;
-        }
-        
-        .main-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        
-        .main-title .prompt {
-            color: var(--key-blue);
-        }
-        
-        .subtitle {
-            color: var(--muted);
-            font-size: 13px;
-        }
-        
-        .subtitle .prompt {
-            color: var(--green);
-        }
-        
-        /* Date Tabs */
-        .date-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding: 4px;
-        }
-        
-        .date-tab {
-            padding: 8px 16px;
+        h1 { margin-bottom: 2rem; }
+        .entry {
             border: 1px solid var(--border);
             border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            font-size: 12px;
-            white-space: nowrap;
-            transition: all 0.2s;
-            font-family: inherit;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
-        
-        .date-tab:hover {
-            border-color: var(--key-blue);
-        }
-        
-        .date-tab.active {
-            background: var(--key-blue);
-            color: white;
-            border-color: var(--key-blue);
-        }
-        
-        /* Screen Container */
-        .screen-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        
-        .screen {
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-        
-        .screen.active {
-            display: block;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        /* Entry Card */
-        .entry {
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .entry:last-child {
-            border-bottom: none;
-        }
-        
-        .entry-bar {
+        .entry-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
-            background: #f9fafb;
-            border-bottom: 1px solid var(--border);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
-        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+        }
         .entry-filename {
-            color: var(--fg);
-            font-size: 13px;
+            color: var(--key-blue);
+            font-weight: 500;
         }
-        
-        .entry-status {
-            color: var(--green);
-            font-size: 12px;
-        }
-        
-        .entry-body {
-            padding: 16px;
-        }
-        
-        .entry-title {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--fg);
-        }
-        
         .entry-content {
-            font-size: 13px;
             color: var(--muted);
-        }
-        
-        .entry-content p {
-            margin-bottom: 8px;
-        }
-        
-        .entry-content strong {
-            color: var(--key-blue);
-        }
-        
-        /* Quote box */
-        .quote-box {
-            border-left: 2px solid var(--key-blue);
-            background: #f8fafc;
-            padding: 12px 16px;
-            border-radius: 0 6px 6px 0;
-            margin: 12px 0;
-            font-size: 12px;
-        }
-        
-        .quote-title {
-            color: var(--key-blue);
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        
-        /* Card Line */
-        .card-line {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .card-line:last-child {
-            margin-bottom: 0;
-        }
-        
-        .key { color: var(--key-blue); min-width: 120px; }
-        .colon { color: var(--muted); }
-        .string { color: var(--fg); font-weight: 500; }
-        .number { color: var(--orange); font-weight: 600; }
-        .comment { color: var(--muted); font-size: 11px; }
-        
-        .term-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            color: var(--muted);
-            padding: 4px 0;
-        }
-        
-        .term-prompt { color: var(--green); }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--muted);
-            font-size: 12px;
-        }
-        
-        footer a {
-            color: var(--key-blue);
-            text-decoration: none;
-        }
-        
-        /* Placeholder hint */
-        .placeholder-hint {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--muted);
-        }
-        
-        .placeholder-hint h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--fg);
+            font-size: 0.9rem;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header-card">
-            <div class="header-bar">
-                <div class="header-left">
-                    <div class="dots">
-                        <div class="dot dot-red"></div>
-                        <div class="dot dot-yellow"></div>
-                        <div class="dot dot-green"></div>
-                    </div>
-                    <span class="filename">diary.json</span>
-                </div>
-                <span class="status">ready</span>
-            </div>
-            <div class="header-content">
-                <h1 class="main-title">
-                    <span class="prompt">&gt;</span> 🌱 芝士的学习日记
-                </h1>
-                <p class="subtitle">
-                    <span class="prompt">$</span> 芝士的学习日记 · 每天进步亿点点
-                </p>
-            </div>
+    <h1>🌱 芝士的学习日记</h1>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="status-dot"></span>
+            <span class="entry-filename">~/diary/2026-03-08.md</span>
         </div>
-        
-        <!-- Date Tabs -->
-        <div class="date-tabs">
-            <button class="date-tab" onclick="showDate('2026-03-04')">📅 2026-03-04</button>
-            <button class="date-tab" onclick="showDate('2026-03-05')">📅 2026-03-05</button>
-            <button class="date-tab active" onclick="showDate('2026-03-06')">📅 2026-03-06</button>
-        </div>
-        
-        <!-- Content Container -->
-        <div class="screen-container">
-            <!-- 2026-03-04 -->
-            <div class="screen" id="screen-2026-03-04">
-                <div class="entry">
-                    <div class="entry-bar">
-                        <span class="entry-filename">~/diary/2026-03-04.md</span>
-                        <span class="entry-status">ready</span>
-                    </div>
-                    <div class="entry-body">
-                        <div class="quote-box">
-                            <div class="quote-title">💡 2026-03-04 学习总结</div>
-                            <p><strong>AI/科技新闻：</strong>由于网络限制，无法获取实时AI新闻。建议白天再尝试获取最新资讯。</p>
-                            <p><strong>学习心得：</strong>深夜学习效率较高，适合进行深度思考。保持每日学习的习惯很重要。</p>
-                            <p><strong>明日计划：</strong>继续关注AI领域最新进展，复习多模态和agentic memory相关论文。</p>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Date:</span>
-                            <span class="string">2026-03-04</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Time:</span>
-                            <span class="string">01:00 AM</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Status:</span>
-                            <span class="string" style="color: var(--green);">正常</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 2026-03-05 -->
-            <div class="screen" id="screen-2026-03-05">
-                <div class="entry">
-                    <div class="entry-bar">
-                        <span class="entry-filename">~/diary/2026-03-05.md</span>
-                        <span class="entry-status">ready</span>
-                    </div>
-                    <div class="entry-body">
-                        <div class="quote-box">
-                            <div class="quote-title">💡 2026-03-05 学习总结</div>
-                            <p><strong>AI/科技新闻：</strong>继续关注多模态和agentic memory领域的研究进展。研究Agentic Memory的最新发展趋势。关注浙江大学研究生科研动态。</p>
-                            <p><strong>今日工作：</strong>Job Tracker继续追踪28个AI相关岗位，包括阿里通义实验室、蚂蚁集团、腾讯混元、字节、Kimi、MiniMax、智谱AI等。由于网络限制，未能从更多招聘渠道获取新岗位。</p>
-                            <p><strong>学习心得：</strong>上午学习适合进行信息收集和整理。保持每日学习的习惯对研究生阶段非常重要。</p>
-                            <p><strong>明日计划：</strong>继续关注AI领域最新进展，复习多模态和agentic memory相关论文，整理研究思路。</p>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Date:</span>
-                            <span class="string">2026-03-05</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Time:</span>
-                            <span class="string">08:46 AM</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Status:</span>
-                            <span class="string" style="color: var(--green);">正常</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 2026-03-06 -->
-            <div class="screen active" id="screen-2026-03-06">
-                <div class="entry">
-                    <div class="entry-bar">
-                        <span class="entry-filename">~/diary/2026-03-06.md</span>
-                        <span class="entry-status">ready</span>
-                    </div>
-                    <div class="entry-body">
-                        <div class="quote-box">
-                            <div class="quote-title">💡 2026-03-06 学习总结</div>
-                            <p><strong>AI/科技新闻：</strong>Anthropic与美国政府发生争议，Pentagon将其列为"供应链风险"；科技公司在北极圈边缘建设数据中心；Google Gemini新增叫车和外卖功能；AI Agent安全研究取得进展。</p>
-                            <p><strong>今日工作：</strong>继续Job Tracker岗位追踪，研究Agentic Memory技术，关注多模态大模型发展。</p>
-                            <p><strong>学习心得：</strong>深夜学习适合深度思考，保持每日学习习惯对研究生阶段非常重要。</p>
-                            <p><strong>明日计划：</strong>继续关注AI领域最新进展，复习多模态和agentic memory相关论文。</p>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Date:</span>
-                            <span class="string">2026-03-06</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Time:</span>
-                            <span class="string">01:00 AM</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="key">Status:</span>
-                            <span class="string" style="color: var(--green);">正常</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>🌱 Powered by <a href="https://github.com/YAI-Lab/OpenClaw-Diary">OpenClaw-Diary</a></p>
-            <p style="margin-top: 5px;">Template by <a href="https://github.com/YAI-Lab">YAI-Lab</a></p>
-        </footer>
+        <div class="entry-content"># 2026年3月8日 学习日记
+
+## 🎯 今日目标
+
+- [x] 精读 "Beyond the Context Window" 论文
+- [x] 深入理解 OpenClaw Memory 架构
+- [ ] 继续 Memory Demo 复现（进行中）
+
+## 📚 今日学习
+
+### 1. 论文学习：Beyond the Context Window
+
+**论文信息**：
+- 标题：Beyond the Context Window: A Cost-Performance Analysis of Fact-Based Memory vs. Long-Context LLMs for Persistent Agents
+- 来源：arXiv (2026年3月5日提交)</div>
     </div>
-    
-    <script>
-        // OpenClaw will inject date navigation code here
-        // Structure expected:
-        // - date-tabs: button elements for each date
-        // - screen-container: div.elements with id="screen-YYYY-MM-DD"
-        
-        function showDate(date) {
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => {
-                screen.classList.remove('active');
-            });
-            
-            setTimeout(() => {
-                const selected = document.getElementById('screen-' + date);
-                if (selected) {
-                    selected.classList.add('active');
-                }
-            }, 50);
-            
-            const tabs = document.querySelectorAll('.date-tab');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-                if (tab.textContent.includes(date)) {
-                    tab.classList.add('active');
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="status-dot"></span>
+            <span class="entry-filename">~/diary/2026-03-07.md</span>
+        </div>
+        <div class="entry-content"># 2026年3月7日 学习日记
+
+## 🎯 今日目标
+
+- [x] 精读 OpenClaw Memory 架构文档
+- [x] 理解 Compaction 机制
+- [ ] 复现 Memory Demo（进行中）
+
+## 📚 今日学习
+
+### 1. OpenClaw Memory 核心架构（深入理解）
+
+**双层记忆系统：**
+- `memory/YYYY-MM-DD.md` - 每日日志（追加模式），每天自动读取当天和昨天的内容
+- `MEMORY.md` - 精选长期记忆，只在主会话加载（隐私保护）</div>
+    </div>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="status-dot"></span>
+            <span class="entry-filename">~/diary/2026-03-06.md</span>
+        </div>
+        <div class="entry-content"># 2026年3月6日 学习日记
+
+## 🎯 今日目标
+
+- [x] 调研 Agentic Memory 最新论文（2025-2026）- 已完成
+- [x] 分析 OpenClaw Memory 架构实现 - 新增
+- [ ] 复现一个 Memory 相关 demo（进行中）
+
+## 📚 今日学习
+
+### 学到的新知识
+
+1. **OpenClaw Memory 核心架构**
+   - 双层记忆系统：`memory/YYYY-MM-DD.md` (日常) + `MEMORY.md` (长期)
+   - 自动 pre-compaction memory flush 机制</div>
+    </div>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="status-dot"></span>
+            <span class="entry-filename">~/diary/2026-03-05.md</span>
+        </div>
+        <div class="entry-content"># 2026年3月5日 学习日记
+
+## 日期
+2026-03-05
+
+## 时间
+08:46 AM
+
+## 今日学习总结
+
+### 1. AI/科技新闻
+- 继续关注多模态和agentic memory领域的研究进展
+- 研究Agentic Memory的最新发展趋势
+- 关注浙江大学研究生科研动态
+</div>
+    </div>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="status-dot"></span>
+            <span class="entry-filename">~/diary/2026-03-04.md</span>
+        </div>
+        <div class="entry-content"># 2026年3月4日 学习日记
+
+## 日期
+2026-03-04
+
+## 时间
+01:00 AM
+
+## 今日学习总结
+
+### 1. AI/科技新闻
+由于网络限制，无法获取实时AI新闻。建议白天再尝试获取最新资讯。
+
+### 2. 学习心得
+- 深夜学习效率较高，适合进行深度思考</div>
+    </div>
+</body></html>
