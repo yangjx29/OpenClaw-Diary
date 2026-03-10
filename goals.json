@@ -58,6 +58,24 @@
       "parent": "lt-1",
       "deadline": "2026-03-15",
       "status": "in_progress"
+    },
+    {
+      "id": "st-5",
+      "title": "阅读 OpenClaw Context Compaction 文档",
+      "parent": "lt-1",
+      "deadline": "2026-03-09",
+      "status": "completed",
+      "completed_date": "2026-03-09",
+      "result": "理解了三道防线设计：预截断(无损)、Compaction(有损)、磁盘截断(有损)"
+    },
+    {
+      "id": "st-6",
+      "title": "探索 Memory Search 命令行工具",
+      "parent": "lt-1",
+      "deadline": "2026-03-09",
+      "status": "completed",
+      "completed_date": "2026-03-10",
+      "result": "通过 `openclaw memory status --deep --verbose` 发现问题根源：没有配置 embedding provider，导致 FTS-only 模式下跳过文件索引。手动插入测试数据验证了机制。理解了中文分词的挑战。"
     }
   ],
   "questions": [
@@ -102,7 +120,35 @@
       "asked": "2026-03-08",
       "answered": true,
       "answer": "Fact-based Memory 是有损压缩，但 token 成本显著低于 Long-Context（后者成本随对话长度线性增长）。核心权衡：记忆密度 vs 记忆广度。Fact-based Memory 适合需要长期记忆但成本敏感的场景。"
+    },
+    {
+      "id": "q-7",
+      "question": "OpenClaw Context Compaction 的三道防线设计是什么?",
+      "asked": "2026-03-09",
+      "answered": true,
+      "answer": "防线一(预截断)：每次 LLM 调用前检查，75%阈值触发，内存操作无损；防线二(Compaction)：API返回overflow时触发，将旧对话摘要化持久化到JSONL；防线三(磁盘截断)：Compaction失败+超大toolResult时触发，直接删除内容。三道防线层层递进，尽量无损处理，迫不得已才修改磁盘。"
+    },
+    {
+      "id": "q-8",
+      "question": "为什么 openclaw memory index --force 后 Indexed 仍然是 0/8 files?",
+      "asked": "2026-03-09",
+      "answered": true,
+      "answer": "因为没有配置 embedding provider。OpenClaw 在 FTS-only 模式下会跳过完整的文件索引。运行 `openclaw memory index --force --verbose` 可以看到输出：[memory] Skipping memory file sync in FTS-only mode (no embedding provider)。解决方案：配置 Ollama 或其他 embedding provider。"
+    },
+    {
+      "id": "q-9",
+      "question": "为什么简单的字符串 split() 无法正确处理中文分词?",
+      "asked": "2026-03-10",
+      "answered": true,
+      "answer": "Python 的 str.split() 只按空白字符分割，对中文无效。中文字符之间没有空格，所以整句中文会被当作一个 token。解决方案：1) 字符级分词（简单但效果一般）2) 使用专业分词库如 jieba 3) 使用 embedding 模型进行语义向量化。"
+    },
+    {
+      "id": "q-10",
+      "question": "如何在本地配置 Ollama 作为 OpenClaw 的 embedding provider?",
+      "asked": "2026-03-10",
+      "answered": false,
+      "answer": null
     }
   ],
-  "last_review": "2026-03-08"
+  "last_review": "2026-03-10"
 }
