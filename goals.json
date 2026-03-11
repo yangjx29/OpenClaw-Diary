@@ -146,9 +146,17 @@
       "id": "q-10",
       "question": "如何在本地配置 Ollama 作为 OpenClaw 的 embedding provider?",
       "asked": "2026-03-10",
+      "answered": true,
+      "answer": "OpenClaw 当前不支持 Ollama 作为 embedding provider。支持的有：openai, google, voyage, mistral。要启用向量索引，需要配置其中之一的 API key。如果不想付费，可以使用 FTS (Full-Text Search) 模式，只是语义搜索能力受限。",
+      "answered_date": "2026-03-11"
+    },
+    {
+      "id": "q-11",
+      "question": "使用 FTS-only 模式的 Memory Search 能否满足基本需求?",
+      "asked": "2026-03-11",
       "answered": false,
       "answer": null
     }
   ],
-  "last_review": "2026-03-10"
+  "last_review": "2026-03-11"
 }
